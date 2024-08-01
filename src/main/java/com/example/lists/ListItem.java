@@ -1,4 +1,4 @@
-package com.techelevator.lists;
+package com.example.lists;
 
 public abstract class ListItem {
 

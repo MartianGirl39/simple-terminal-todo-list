@@ -1,4 +1,4 @@
-package com.techelevator.menus.options;
+package com.example.menus.options;
 
 @FunctionalInterface
 public interface OptionResponseFunction {

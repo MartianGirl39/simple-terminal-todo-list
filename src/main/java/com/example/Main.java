@@ -1,11 +1,10 @@
-package com.techelevator;
+package com.example;
 
-import com.techelevator.lists.ListItem;
-import com.techelevator.lists.ToBuy;
-import com.techelevator.lists.ToDo;
-import com.techelevator.menus.Menu;
+import com.example.lists.ListItem;
+import com.example.lists.ToBuy;
+import com.example.lists.ToDo;
+import com.example.menus.Menu;
 
-import javax.print.DocFlavor;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
@@ -31,6 +30,7 @@ public class Main {
 
     private List<ListItem> items = new ArrayList<>();
     Logger logger = new Logger("todo-items.txt");
+    private Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -43,6 +43,7 @@ public class Main {
         fetchList();
         Menu mainMenu = initMainMenu();
         mainMenu.viewMenu();
+        input.close();
     }
 
     private void fetchList(){
@@ -94,7 +95,6 @@ public class Main {
 
         Menu addMenu = new Menu("Add Todos", "b");
         addMenu.putOption("1", "add a todo list item", () -> {
-            Scanner input = new Scanner(System.in);
             String description = "";
             String[] participants;
 
@@ -109,7 +109,6 @@ public class Main {
             return true;
         });
         addMenu.putOption("2", "add a shopping list item", () -> {
-            Scanner input = new Scanner(System.in);
             String description = "";
             BigDecimal price = new BigDecimal("0.00");
             boolean valid = false;
@@ -135,9 +134,74 @@ public class Main {
 
         Menu completeMenu = new Menu("Mark Complete", "b");
         completeMenu.putOption("1", "mark complete from todos", () -> {
+            boolean valid = false;
+            int answer = 0;
+
+            List<ListItem> toDos = new ArrayList<>();
+            for(ListItem item : items){
+                if(item instanceof ToDo){
+                    toDos.add(item);
+                }
+            }
+
+            while(!valid) {
+                int counter = 1;
+                for(ListItem item: toDos){
+                    System.out.println(counter + ") " + item);
+                    counter++;
+                }
+
+                System.out.println("Select a todo to mark complete, 0 to leave: ");
+                try {
+                    answer = Integer.parseInt(input.nextLine());
+                    if(answer == 0){
+                        valid = true;
+                        continue;
+                    }
+                    toDos.get(answer-1).setCompleted(true);
+                }
+                catch(NumberFormatException e){
+                    System.out.println("(Please enter a valid whole number) ");
+                }
+                catch(IndexOutOfBoundsException e){
+                    System.out.println("(Please refer to list by their list number) ");
+                }
+            }
             return true;
         });
         completeMenu.putOption("2", "mark complete from shopping list", () -> {
+            boolean valid = false;
+            int answer = 0;
+
+            List<ListItem> toBuys = new ArrayList<>();
+            for(ListItem item : items){
+                if(item instanceof ToBuy){
+                    toBuys.add(item);
+                }
+            }
+
+            while(!valid) {
+                int counter = 1;
+                for(ListItem item: toBuys){
+                    System.out.println(counter + ") " + item);
+                    counter++;
+                }
+                System.out.println("Select a todo to mark complete, 0 to leave: ");
+                try {
+                    answer = Integer.parseInt(input.nextLine());
+                    if(answer == 0){
+                        valid = true;
+                        continue;
+                    }
+                    toBuys.get(answer-1).setCompleted(true);
+                }
+                catch(NumberFormatException e){
+                    System.out.println("(Please enter a valid whole number) ");
+                }
+                catch(IndexOutOfBoundsException e){
+                    System.out.println("(Please refer to list by their list number) ");
+                }
+            }
             return true;
         });
 

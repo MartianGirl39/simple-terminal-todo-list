@@ -1,7 +1,7 @@
-package com.techelevator.menus;
+package com.example.menus;
 
-import com.techelevator.menus.options.OptionResponse;
-import com.techelevator.menus.options.OptionResponseFunction;
+import com.example.menus.options.OptionResponse;
+import com.example.menus.options.OptionResponseFunction;
 
 import java.util.HashMap;
 import java.util.Map;

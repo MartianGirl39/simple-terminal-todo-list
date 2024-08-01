@@ -1,4 +1,4 @@
-package com.techelevator.menus.options;
+package com.example.menus.options;
 
 public class OptionResponse {
     String actionName;

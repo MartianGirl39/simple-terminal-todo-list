@@ -1,4 +1,4 @@
-package com.techelevator.lists;
+package com.example.lists;
 
 import java.util.ArrayList;
 import java.util.List;

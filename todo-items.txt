@@ -2,3 +2,4 @@ Shopping|Alice,Bob,Carly,David,Ellen|todo
 Toothpaste|5|tobuy
 Pokemon Go|Alice,Carly|todo
 shop for shoes|Jenny,Kristy,Jaisley|todo
+Watch Friends|Jenny,Tommy|todo

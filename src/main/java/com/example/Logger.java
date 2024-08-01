@@ -1,10 +1,9 @@
-package com.techelevator;
+package com.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
 
 public class Logger {
     private File file;
